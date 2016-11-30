@@ -58,6 +58,7 @@ public class ConsumerTopic {
 			}
 		} catch (WakeupException e) {
 			// ignore for shutdown
+			
 		} finally {
 			consumer.close();
 			System.out.println("Closed consumer and we are done");
