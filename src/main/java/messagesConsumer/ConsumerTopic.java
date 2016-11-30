@@ -49,11 +49,13 @@ public class ConsumerTopic {
 				ConsumerRecords<String, Integer> records = consumer.poll(1000);
 				System.out.println(System.currentTimeMillis() + "  --  waiting for data...");
 				for (ConsumerRecord<String, Integer> record : records) {
-					System.out.printf("offset = %d\n", record.offset());
+					//System.out.printf("offset = %d\n", record.offset());
 					System.out.println("id= " + record.key() + ", operValue= " + record.value());
 				}
+				/*
 				for (TopicPartition tp : consumer.assignment())
 					System.out.println("Committing offset at position:" + consumer.position(tp));
+				*/
 				consumer.commitSync();
 			}
 		} catch (WakeupException e) {
