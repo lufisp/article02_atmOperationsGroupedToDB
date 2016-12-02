@@ -10,6 +10,8 @@ public class DataModel implements Serializable{
 	private int value;
 	private String longitude;
 	private String latitude;
+	
+	public DataModel(){}
 		
 	public DataModel(String id, int value) {
 		super();
