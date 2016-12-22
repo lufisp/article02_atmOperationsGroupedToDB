@@ -22,7 +22,7 @@ import org.springframework.http.MediaType;
 @CrossOrigin
 @RestController
 public class AtmOperationsRestController{ 
-	
+	Map<String,Map<String,String>> allTable;
 	
 	@RequestMapping(path = "/version/", method = RequestMethod.GET, produces=MediaType.ALL_VALUE)
 	public String getVersion(){	    
@@ -34,6 +34,7 @@ public class AtmOperationsRestController{
 	public @ResponseBody List<DataModel> getData(){
 		
 		List<DataModel> lastBatch = SingletonVariablesShare.INSTANCE.getLastMessagesMicroBatch();
+		
 	    
 		
 		return lastBatch;
@@ -44,7 +45,7 @@ public class AtmOperationsRestController{
 	@RequestMapping(path = "/getDataFirstTime/", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public String  getDataFirstTime(){		
 		HbaseDAO hbaseDao = new HbaseDAO(); 
-		Map<String,Map<String,String>> allTable = hbaseDao.getAllRowsUnderFamiliys("atm:AtmTotalCash", "Total", "GeoLoc");
+		allTable = hbaseDao.getAllRowsUnderFamiliys("atm:AtmTotalCash", "Total", "GeoLoc");
 		
 		StringBuilder stb = new StringBuilder();
 		stb.append("[");
